@@ -58,3 +58,22 @@ func TestToPmjpNow(t *testing.T) {
 		t.Fatalf("want %v, but got %v", expected, actual)
 	}
 }
+
+func TestCalcTenure(t *testing.T) {
+	testcases := []struct {
+		inputName string
+		expected  int
+	}{
+		{"", 0},
+		{"東久邇宮稔彦王", 54},
+		{"田中角栄", 886},
+		{"吉田茂", 2616},
+	}
+
+	for _, tt := range testcases {
+		actual := CalcTenure(tt.inputName)
+		if actual != tt.expected {
+			t.Fatalf("%s's tenure: want %v, but got %v", tt.inputName, tt.expected, actual)
+		}
+	}
+}
